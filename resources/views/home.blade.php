@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <ul>
+                        <li><a href="{{ route('products.index') }}">Listar Produtos</a></li>
+                        <li><a href="{{ route('products.index') }}">Listar Usuários</a></li>
+                        <li><a href="{{ route('register') }}">Registrar novo Usuário</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

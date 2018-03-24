@@ -77,7 +77,9 @@
                 </div>
             @endif
 
+
             <div class="content">
+                @yield('content')
                 <div class="title m-b-md">
                     Laravel
                 </div>
