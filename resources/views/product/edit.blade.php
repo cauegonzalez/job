@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="width: 50%; margin-left: 25%;">
-    <form method="post" action="{{ route('products.update', $product->id) }}">
+    <form method="post" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <input type="hidden" name="_method" value="PATCH">

@@ -15,9 +15,12 @@
                     @endif
 
                     <ul>
+                    @guest
+                        <li><a href="register">Registrar novo Usuário</a></li>
+                    @else
                         <li><a href="{{ route('products.index') }}">Listar Produtos</a></li>
-                        <li><a href="{{ route('products.index') }}">Listar Usuários</a></li>
-                        <li><a href="{{ route('register') }}">Registrar novo Usuário</a></li>
+                        <li><a href="user/{{ Auth::user()->id }}">Perfil {{ Auth::user()->name  }}</a></li>
+                    @endguest
                     </ul>
                 </div>
             </div>

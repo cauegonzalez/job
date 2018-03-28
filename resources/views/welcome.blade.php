@@ -79,7 +79,7 @@
 
 
             <div class="content">
-                @yield('content')
+                 @yield('content')
                 <div class="title m-b-md">
                     Laravel
                 </div>

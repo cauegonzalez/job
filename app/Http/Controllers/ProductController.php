@@ -38,7 +38,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->title);
+        $nameImage = "nophoto.png";
         if ($request->hasfile('image'))
         {
             $file = $request->file('image');
@@ -46,13 +46,21 @@ class ProductController extends Controller
             $file->move(public_path().'/images/', $nameImage);
         }
 
+        $nameThumbnail = "nophoto.png";
         if ($request->hasfile('thumbnail'))
         {
             $file = $request->file('thumbnail');
             $nameThumbnail = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/', $nameThumbnail);
         }
-        Product::create($request->all());
+        $product = new Product();
+        $product->title         = $request->title;
+        $product->description   = $request->description;
+        $product->image         = $nameImage;
+        $product->thumbnail     = $nameThumbnail;
+        $product->price         = $request->price;
+
+        $product->save();
         return redirect()->route('products.index');
     }
 
@@ -64,7 +72,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.show', ['product'=>$product]);
     }
 
     /**
@@ -76,7 +84,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        // dd($product->title, $id);
         return view('product.edit', ['product'=>$product]);
     }
 
@@ -89,14 +96,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        // dd($product);
+        $nameImage = "nophoto.png";
+        if ($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $nameImage = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $nameImage);
+        }
+
+        $nameThumbnail = "nophoto.png";
+        if ($request->hasfile('thumbnail'))
+        {
+            $file = $request->file('thumbnail');
+            $nameThumbnail = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $nameThumbnail);
+        }
+
         $product = Product::find($product->id);
-        $product->title = $request->get('name');
-        $product->description = $request->get('description');
-        $product->image = ($request->get('image') != '' ? $request->get('image') : 'nophoto.png');
-        $product->thumbnail = ($request->get('thumbnail') != '' ? $request->get('thumbnail') : 'nophoto.png');
-        $product->price = $request->get('price');
+        $product->title         = $request->get('name');
+        $product->description   = $request->get('description');
+        $product->image         = $nameImage;
+        $product->thumbnail     = $nameThumbnail;
+        $product->price         = $request->get('price');
         $product->save();
+
         return redirect('products');
     }
 

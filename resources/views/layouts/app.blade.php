@@ -16,9 +16,20 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .page-breadcrumb {
+            list-style-type: none;
+        }
+
+        .page-breadcrumb li {
+            display: inline;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -68,6 +79,7 @@
         </nav>
 
         <main class="py-4">
+            @include('breadcrumb')
             @yield('content')
         </main>
     </div>
