@@ -17,9 +17,15 @@
                     <ul>
                     @guest
                         <li><a href="register">Registrar novo Usuário</a></li>
+                        <li><a href="login">Realizar Login</a></li>
                     @else
                         <li><a href="{{ route('products.index') }}">Listar Produtos</a></li>
                         <li><a href="user/{{ Auth::user()->id }}">Perfil {{ Auth::user()->name  }}</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                        </li>
                     @endguest
                     </ul>
                 </div>
